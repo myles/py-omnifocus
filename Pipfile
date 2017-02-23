@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+lxml = "*"
+click = "*"
+
+[dev-packages]
+bpython = "*"
+pytest = "*"
+flake8 = "*"
+pytest-cov = "*"
