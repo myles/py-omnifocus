@@ -4,6 +4,7 @@ import pytest
 
 from omnifocus import models
 
+
 @pytest.fixture
 def data():
     fixture = abspath(join(dirname(__file__), 'fixtures/OmniFocus.ofocus'))
@@ -11,5 +12,10 @@ def data():
 
 
 def test_task():
-    task = data['iCNXEbk-WAk']
+    task = data()['iCNXEbk-WAk']
     assert task.id == 'iCNXEbk-WAk'
+
+
+def test_context():
+    context = data()['hmBwBxYctCd']
+    assert context.location == None

@@ -23,13 +23,24 @@ class Entry(object):
             return None
 
     def get_text(self, tag, node):
-        return ''.join([n.text for n in node.xpath(tag, namespaces=self._ns)])
+        return ''.join([
+            str(n.text) for n in node.xpath(tag, namespaces=self._ns)])
 
     def get_attr(self, tag, node):
         return ''.join([n for n in node.xpath(tag, namespaces=self._ns)])
 
     def get_children(self, tag, node):
         return node.xpath(tag, namespaces=self._ns)
+
+
+class Context(Entry):
+    def __init__(self, node):
+        Entry.__init__(self, node)
+
+        self.location = self.parse_location(self.get_text('n:location', node))
+
+    def parse_location(self, var):
+        print(var)
 
 
 class Task(Entry):
@@ -62,7 +73,7 @@ class Data(object):
         return Entry(node)
 
     def parse_context(self, node):
-        return Entry(node)
+        return Context(node)
 
     def parse_folder(self, node):
         return Entry(node)
